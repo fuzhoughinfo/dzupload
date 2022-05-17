@@ -109,17 +109,17 @@ public class SealUploadProvinceJob {
         @Scheduled(cron = "*/5 * * * * ?")
 //        @Scheduled(cron = "0 13 10 * * ?")
         public void execute() {
-//            LOG.info("开始上传印章");
-//            List<SealInfoUnitEntity> jfSeallist = sealInfoEntityService.getJFSealInfo();
-//
-//            List<SealMKUnitEntity> sealMKList = sealMKUnitEntityMapper.selectAll();
-//
-//            //上传德州省厅
-//            try {
-//                sendSealProvince(jfSeallist,sealMKList);
-//            } catch (Exception e) {
-//                LOG.error("印章数据回推给备案系统",e);
-//            }
+            LOG.info("开始上传印章");
+            List<SealInfoUnitEntity> jfSeallist = sealInfoEntityService.getJFSealInfo();
+
+            List<SealMKUnitEntity> sealMKList = sealMKUnitEntityMapper.selectAll();
+
+            //上传德州省厅
+            try {
+                sendSealProvince(jfSeallist,sealMKList);
+            } catch (Exception e) {
+                LOG.error("印章数据回推给备案系统",e);
+            }
 //
 //            LOG.info("开始上传印章备案材料");
 ////            备案材料查询顺序 连表查询所有的印章，根据返回单位名称到file表中去查询相应的备案材料
@@ -152,16 +152,17 @@ public class SealUploadProvinceJob {
 //                LOG.error("印章数据回推给备案系统",e);
 //            }.andEqualTo("fileid","20180425181206061241").andEqualTo("fileid","20180425181206061241")
 
-            LOG.info("开始更新本地备案文件到数据库");
-            Example sealFileExample = new Example(SealFileEntity.class);
-            sealFileExample.createCriteria().andEqualTo("fileid","20190606171309070422").andIsNull("syncDb");
-//                    .andGreaterThanOrEqualTo("fileid","20160729171840307780").andIsNull("syncDb");
-            List<SealFileEntity> fileRecordlist =sealFileEntityMapper.selectByExample(sealFileExample);
-            try {
-                updateDocToDB(fileRecordlist);
-            } catch (Exception e) {
-                LOG.error("印章数据回推给备案系统",e);
-            }
+//            LOG.info("开始更新本地备案文件到数据库");
+//            Example sealFileExample = new Example(SealFileEntity.class);
+//            sealFileExample.createCriteria().andGreaterThanOrEqualTo("fileid","20190606171309085150").andIsNull("syncDb");
+////
+////            .andEqualTo("fileid","20190606171309070422").andIsNull("syncDb")
+//            List<SealFileEntity> fileRecordlist =sealFileEntityMapper.selectByExample(sealFileExample);
+//            try {
+//                updateDocToDB(fileRecordlist);
+//            } catch (Exception e) {
+//                LOG.error("印章数据回推给备案系统",e);
+//            }
 
 
         }

@@ -85,6 +85,7 @@
   </sql>
 
   <!--获取所有未上传印章  and a.SealId ='3714026000011'-->
+  <!--德州获取所有未上传印章语句   select  a.SealId,a.SealName,a.SealShape,a.SealSize,a.SealTypeId,a.SealImageData ,a.SealSampleName, b.OtherFileId,b.UnitName,b.LegalRY,b.LegalRYID from SealInfo a left join SealUnit b on a.SealUnitId =b.SealUnitId  where a.SealStatusId ='4' and (isnull(a.SyncProvince,'')='')-->
   <select id="getJFSealInfo" resultType="com.ghinfo.dzupload.entity.SealInfoUnitEntity">
     select  a.SealId,a.SealName,a.SealShape,a.SealSize,a.SealTypeId,a.SealImageData ,a.SealSampleName, b.OtherFileId,b.UnitName,b.LegalRY,b.LegalRYID from SealInfo a left join SealUnit b on a.SealUnitId =b.SealUnitId  where a.SealStatusId ='4' and (isnull(a.SyncProvince,'')='')
 
