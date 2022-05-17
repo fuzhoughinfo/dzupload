@@ -109,24 +109,24 @@ public class SealUploadProvinceJob {
         @Scheduled(cron = "*/5 * * * * ?")
 //        @Scheduled(cron = "0 13 10 * * ?")
         public void execute() {
-            LOG.info("开始上传印章");
-            List<SealInfoUnitEntity> jfSeallist = sealInfoEntityService.getJFSealInfo();
-
-            List<SealMKUnitEntity> sealMKList = sealMKUnitEntityMapper.selectAll();
-
-            //上传德州省厅
-            try {
-                sendSealProvince(jfSeallist,sealMKList);
-            } catch (Exception e) {
-                LOG.error("印章数据回推给备案系统",e);
-            }
+//            LOG.info("开始上传印章");
+//            List<SealInfoUnitEntity> jfSeallist = sealInfoEntityService.getJFSealInfo();
 //
-//            LOG.info("开始上传印章备案材料");
-////            备案材料查询顺序 连表查询所有的印章，根据返回单位名称到file表中去查询相应的备案材料
-////
-//            List<?> jfDocSeallist= sealInfoEntityService.getSealFileRecord();
-//            LOG.info("上传之前未上传备案文件印章总数:"+jfDocSeallist.size());
-//            sendDocProvince(jfDocSeallist);
+//            List<SealMKUnitEntity> sealMKList = sealMKUnitEntityMapper.selectAll();
+//
+//            //上传德州省厅
+//            try {
+//                sendSealProvince(jfSeallist,sealMKList);
+//            } catch (Exception e) {
+//                LOG.error("印章数据回推给备案系统",e);
+//            }
+//
+            LOG.info("开始上传印章备案材料");
+//            备案材料查询顺序 连表查询所有的印章，根据返回单位名称到file表中去查询相应的备案材料
+//
+            List<?> jfDocSeallist= sealInfoEntityService.getSealFileRecord();
+            LOG.info("上传之前未上传备案文件印章总数:"+jfDocSeallist.size());
+            sendDocProvince(jfDocSeallist);
 
 
 
@@ -469,8 +469,11 @@ public class SealUploadProvinceJob {
         JSONObject  jsonObject = new JSONObject();
         jsonObject.put("Timestamp",TimeStamp);
         jsonObject.put("Sign", SecureUtil.md5("TJSignet"+ TimeStamp));
-        jsonObject.put("areaID","371403");
-        jsonObject.put("carveID","371403000003");
+//        jsonObject.put("areaID","371403");
+//        jsonObject.put("carveID","371403000003");
+        //乐陵市参数
+        jsonObject.put("areaID","371481");
+        jsonObject.put("carveID","371481000002");
         jsonObject.put("VerifyUserID","fj_guanghui");
         jsonObject.put("VerifyPsd","jianguan_gh!@#$");
 
@@ -569,10 +572,11 @@ public class SealUploadProvinceJob {
 //                LOG.info("该印章已经上传,印章编号:"+sealObj.get("SealId").toString());
 //                continue;
 //            }
-            if(sealInfoUnit.getOtherfileid() ==null||StringUtils.isBlank(sealInfoUnit.getOtherfileid())||StringUtils.isEmpty(sealInfoUnit.getOtherfileid())){
-                LOG.info("社会信用代码为空,印章编号:"+sealInfoUnit.getSealid());
-                continue;
-            }
+
+//            if(sealInfoUnit.getOtherfileid() ==null||StringUtils.isBlank(sealInfoUnit.getOtherfileid())||StringUtils.isEmpty(sealInfoUnit.getOtherfileid())){
+//                LOG.info("社会信用代码为空,印章编号:"+sealInfoUnit.getSealid());
+//                continue;
+//            }
 
             if(sealInfoUnit.getSealimagedata() ==null||StringUtils.isBlank(sealInfoUnit.getSealimagedata().toString())||StringUtils.isEmpty(sealInfoUnit.getSealimagedata().toString())){
                 LOG.info("印章图像信息为空,印章编号:"+sealInfoUnit.getSealid());
@@ -627,11 +631,14 @@ public class SealUploadProvinceJob {
             corporationInfo.put("bossIdcard", sealInfoUnit.getLegalryid());
 
 //            signetInfo.put("cac_corp_id", sealMKList.get(0).getSealmkunitid());
-            //单位编码传的是对方给的编码,众金的是371403000003
+            //单位编码传的是对方给的编码,众金的是371403000003,乐陵编号是371481000002
 
-              signetInfo.put("cac_corp_id", "371403000003");
+//              signetInfo.put("cac_corp_id", "371403000003");
+                signetInfo.put("cac_corp_id", "371481000002");
 
-            signetInfo.put("cac_corp_name", sealMKList.get(0).getMkunitname());
+//            signetInfo.put("cac_corp_name", sealMKList.get(0).getMkunitname());
+              signetInfo.put("cac_corp_name", "乐陵瑞恒永信财务管理有限公司");
+
             signetInfo.put("content", sealInfoUnit.getSealname());
 
 
@@ -1153,8 +1160,9 @@ public class SealUploadProvinceJob {
 //
             JSONObject resultmsg = JSONUtil.parseObj(result);
 //
+            System.out.println("推送印章返回结果"+result);
             String resultCode = resultmsg.get("code").toString();
-
+            System.out.println("推送印章返回编码"+resultCode);
             if ("0".equals(resultCode)) {
                 JSONObject resultData = resultmsg.getJSONObject("data");
 //                JSONObject markResult = resultData.getJSONObject("markResult");

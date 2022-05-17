@@ -332,9 +332,9 @@ private Variant callActiveX(String sData, int size, String method, Dispatch disp
 
         jsonObject.put("Timestamp",TimeStamp);
 
-//        jsonObject.put("VerifyUserID","fj_guanghui");
-//
-//        jsonObject.put("VerifyPsd","jianguan_gh!@#$");
+        jsonObject.put("VerifyUserID","fj_guanghui");
+
+        jsonObject.put("VerifyPsd","jianguan_gh!@#$");
 
         jsonObject.put("Sign",SecureUtil.md5("TJSignet"+ TimeStamp));
 //        jsonObject.put("areaID","371403");
