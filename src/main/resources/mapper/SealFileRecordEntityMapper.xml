@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ghinfo.dzupload.dao.SealFileRecordEntityMapper">
+
+
+	
+	<select id="getUnitOrder" resultType="com.ghinfo.dzupload.entity.SealFileRecordEntity">
+
+	</select>
+
+
+   <insert id="saveSealFileRecord" parameterType="com.ghinfo.dzupload.entity.SealFileRecordEntity">
+
+
+	   insert into SealFileRecord (FileBase,FileId,FileName,FilePath,SealUnitId,SealUnitName) values (#{fileBase},#{fileId},#{fileName},#{filePath},#{sealUnitId},#{sealUnitName})
+
+
+
+
+   </insert>
+
+
+</mapper>

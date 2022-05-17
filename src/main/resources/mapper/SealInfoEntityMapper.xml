@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ghinfo.dzupload.dao.SealInfoEntityMapper">
+  <resultMap id="BaseResultMap" type="com.ghinfo.dzupload.entity.SealInfoEntity">
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="SealId" jdbcType="CHAR" property="sealid" />
+    <result column="SealName" jdbcType="VARCHAR" property="sealname" />
+    <result column="SealStatusId" jdbcType="CHAR" property="sealstatusid" />
+    <result column="SealUnitId" jdbcType="VARCHAR" property="sealunitid" />
+    <result column="SealSPUnitId" jdbcType="VARCHAR" property="sealspunitid" />
+    <result column="SealMKUnitId" jdbcType="VARCHAR" property="sealmkunitid" />
+    <result column="SealTypeId" jdbcType="CHAR" property="sealtypeid" />
+    <result column="SealMaterialId" jdbcType="CHAR" property="sealmaterialid" />
+    <result column="SealYinYou" jdbcType="VARCHAR" property="sealyinyou" />
+    <result column="SealJBR" jdbcType="VARCHAR" property="sealjbr" />
+    <result column="SealJBRID" jdbcType="VARCHAR" property="sealjbrid" />
+    <result column="SealSP" jdbcType="VARCHAR" property="sealsp" />
+    <result column="SealSPDate" jdbcType="VARCHAR" property="sealspdate" />
+    <result column="SealCJDate" jdbcType="VARCHAR" property="sealcjdate" />
+    <result column="SealMKDate" jdbcType="VARCHAR" property="sealmkdate" />
+    <result column="SealJFDate" jdbcType="VARCHAR" property="sealjfdate" />
+    <result column="SealBFDate" jdbcType="VARCHAR" property="sealbfdate" />
+    <result column="SealJXDate" jdbcType="VARCHAR" property="sealjxdate" />
+    <result column="SealGSDate" jdbcType="VARCHAR" property="sealgsdate" />
+    <result column="SealNJDate" jdbcType="VARCHAR" property="sealnjdate" />
+    <result column="SealImageWidth" jdbcType="CHAR" property="sealimagewidth" />
+    <result column="SealImageHeight" jdbcType="CHAR" property="sealimageheight" />
+    <result column="SealImpress" jdbcType="CHAR" property="sealimpress" />
+    <result column="SealMemo1" jdbcType="VARCHAR" property="sealmemo1" />
+    <result column="SealMemo2" jdbcType="VARCHAR" property="sealmemo2" />
+    <result column="UpdateDate" jdbcType="VARCHAR" property="updatedate" />
+    <result column="SealCJUnitID" jdbcType="VARCHAR" property="sealcjunitid" />
+    <result column="CenterImageId" jdbcType="CHAR" property="centerimageid" />
+    <result column="SealShape" jdbcType="VARCHAR" property="sealshape" />
+    <result column="SealSize" jdbcType="VARCHAR" property="sealsize" />
+    <result column="JiaJiFlag" jdbcType="CHAR" property="jiajiflag" />
+    <result column="ctrl" jdbcType="INTEGER" property="ctrl" />
+    <result column="SealMKSendFlag" jdbcType="INTEGER" property="sealmksendflag" />
+    <result column="SealJFSendFlag" jdbcType="INTEGER" property="sealjfsendflag" />
+    <result column="Source" jdbcType="VARCHAR" property="source" />
+    <result column="SealOrderId" jdbcType="VARCHAR" property="sealorderid" />
+    <result column="DataFlag" jdbcType="CHAR" property="dataflag" />
+    <result column="SealChipId" jdbcType="VARCHAR" property="sealchipid" />
+    <result column="SealLock" jdbcType="CHAR" property="seallock" />
+    <result column="SealSampleName" jdbcType="VARCHAR" property="sealsamplename" />
+    <result column="SealSpTypeId" jdbcType="CHAR" property="sealsptypeid" />
+    <result column="SealImageData" jdbcType="LONGVARBINARY" property="sealimagedata" />
+    <result column="SealOriginal" jdbcType="LONGVARBINARY" property="sealoriginal" />
+
+    <!--<result column="SyncProvince" jdbcType="VARCHAR" property="syncprovince" />-->
+  </resultMap>
+  <!--<resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ghinfo.dzupload.entity.SealInfoEntityWithBLOBs">-->
+    <!--
+      WARNING - @mbggenerated
+    -->
+
+  <!--</resultMap>-->
+
+
+    <resultMap id="MarkMap" type="com.ghinfo.dzupload.entity.SealInfoEntity">
+        <id column="SealId" jdbcType="CHAR" property="sealid" />
+        <result column="SealImageData" jdbcType="LONGVARBINARY" property="sealimagedata" />
+    </resultMap>
+
+
+
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbggenerated
+    -->
+    SealId, SealName, SealStatusId, SealUnitId, SealSPUnitId, SealMKUnitId, SealTypeId, 
+    SealMaterialId, SealYinYou, SealJBR, SealJBRID, SealSP, SealSPDate, SealCJDate, SealMKDate, 
+    SealJFDate, SealBFDate, SealJXDate, SealGSDate, SealNJDate, SealImageWidth, SealImageHeight, 
+    SealImpress, SealMemo1, SealMemo2, UpdateDate, SealCJUnitID, CenterImageId, SealShape, 
+    SealSize, JiaJiFlag, ctrl, SealMKSendFlag, SealJFSendFlag, Source, SealOrderId, DataFlag, 
+    SealChipId, SealLock, SealSampleName, SealSpTypeId
+  </sql>
+  <sql id="Blob_Column_List">
+    <!--
+      WARNING - @mbggenerated
+    -->
+    SealImageData, SealOriginal
+  </sql>
+
+  <!--获取所有未上传印章  and a.SealId ='3714026000011'-->
+  <select id="getJFSealInfo" resultType="com.ghinfo.dzupload.entity.SealInfoUnitEntity">
+    select  a.SealId,a.SealName,a.SealShape,a.SealSize,a.SealTypeId,a.SealImageData ,a.SealSampleName, b.OtherFileId,b.UnitName,b.LegalRY,b.LegalRYID from SealInfo a left join SealUnit b on a.SealUnitId =b.SealUnitId  where a.SealStatusId ='4' and (isnull(a.SyncProvince,'')='')
+
+  </select>
+
+  <!--a.SyncProvince, -->
+  <select id="selectSealInfo" resultMap="BaseResultMap">
+
+    select top 3 * from SealInfo
+  </select>
+
+  <!--获取所有未上传备案文件的印章  and a.SealId='3714034000012'-->
+  <select id="getSealFileRecord" resultType="Map">
+    select a.SealId,a.SignetId,b.UnitName,b.SealUnitId from SealInfo a left join SealUnit b on a.SealUnitId =b.SealUnitId where  a.SealStatusId ='4' and (isnull(a.SyncFile,'')='') and a.syncprovince ='2'
+
+  </select>
+
+  <!--a.SyncFile, and (isnull(SyncImageData,'')='')and  a.SealId = '3714026000011' and SealId ='3714034000409' <select id="getMarkRecord" resultType="com.ghinfo.dzupload.entity.SealInfoEntity">-->
+  <!--获取所有印模 -->
+    <select id="getMarkRecord" resultType="com.ghinfo.dzupload.entity.SealInfoEntity">
+     select a.sealId,a.SignetId,a.SealImageData from SealInfo a where (isnull(a.SyncImageData,'') = '')  and a.SealStatusId = '4' and a.SealId='3714034000198'
+  </select>
+
+
+  <select id="getMarkRecordTop" resultType="com.ghinfo.dzupload.entity.SealInfoEntity">
+     select top 3 * from SealInfo where SealStatusId ='4' and (isnull(SyncImageData,'')='')
+  </select>
+
+</mapper>

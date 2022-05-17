@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ghinfo.db.dao.SealOrderEntityMapper">
+  <resultMap id="BaseResultMap" type="com.ghinfo.dzupload.entity.SealOrderEntity">
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="SealOrderId" jdbcType="VARCHAR" property="sealorderid" />
+    <result column="SealUnitId" jdbcType="CHAR" property="sealunitid" />
+    <result column="OrderPrice" jdbcType="DOUBLE" property="orderprice" />
+    <result column="OrderPayStatus" jdbcType="CHAR" property="orderpaystatus" />
+    <result column="CreateTime" jdbcType="VARCHAR" property="createtime" />
+    <result column="PayTime" jdbcType="VARCHAR" property="paytime" />
+    <result column="PayType" jdbcType="CHAR" property="paytype" />
+    <result column="PayOrder" jdbcType="VARCHAR" property="payorder" />
+    <result column="PayFileId" jdbcType="VARCHAR" property="payfileid" />
+    <result column="OrderStatus" jdbcType="CHAR" property="orderstatus" />
+    <result column="FailReason" jdbcType="VARCHAR" property="failreason" />
+    <result column="ContactName" jdbcType="VARCHAR" property="contactname" />
+    <result column="ContactPhone" jdbcType="VARCHAR" property="contactphone" />
+    <result column="ContactAddress" jdbcType="VARCHAR" property="contactaddress" />
+    <result column="CreateUnitId" jdbcType="VARCHAR" property="createunitid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbggenerated
+    -->
+    SealOrderId, SealUnitId, OrderPrice, OrderPayStatus, CreateTime, PayTime, PayType, 
+    PayOrder, PayFileId, OrderStatus, FailReason, ContactName, ContactPhone, ContactAddress, 
+    CreateUnitId
+  </sql>
+</mapper>

@@ -1,0 +1,59 @@
+server:
+  port: 8900
+
+spring:
+  datasource:
+    druid:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+#德州市地址
+#    url: jdbc:sqlserver://58.56.250.166:1433;DatabaseName=SmisDB
+#乐陵市地址
+    url: jdbc:sqlserver://222.133.16.254:1433;DatabaseName=SmisDB
+    type: com.alibaba.druid.pool.DruidDataSource
+#德州市地址
+#    username: sealadmin
+#    password: SDdzseal0314
+#乐陵市地址
+    username: sa
+    password: LLSeal0605
+    initial-size: 5
+    max-active: 20
+    min-idle: 10
+    max-wait: 10
+      #是否缓存preparedStatement，也就是PSCache。PSCache对支持游标的数据库性能提升巨大，比如说oracle。
+      #在mysql5.5以下的版本中没有PSCache功能，建议关闭掉。
+      #spring.datasource.druid.pool-prepared-statements=true
+      #配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+    time-between-eviction-runs-millis: 60000
+      #配置一个连接在池中最小生存的时间，单位是毫秒
+    min-evictable-idle-time-millis: 300000
+      #配置扩展插件:监控统计用的filter:stat  日志用的filter:log4j  防御sql注入的filter:wall
+      #spring.datasource.druid.filters=stat,wall
+      #spring.datasource.druid.filter.stat.log-slow-sql=true
+      #spring.datasource.druid.filter.stat.slow-sql-millis=2000
+    validation-query: select count(*) from SealInfo
+      #      validation-query:  select 'x' FROM DUAL
+    test-while-idle: true
+    test-on-borrow: false
+    test-on-return: false
+      # 打开PSCache，并且指定每个连接上PSCache的大小
+    pool-prepared-statements: false
+    max-open-prepared-statements: 20
+    filters:
+      commons-log.connection-logger-name: stat,wall,log4j
+
+
+logging:
+  config:
+    classpath: logback.xml
+
+mybatis:
+  mapper-locations:
+    classpath: mapper/*.xml
+#     classpath: com.ghinfo.dzupload.mappers
+  # 注意：对应实体类的路径
+  type-aliases-package: com.ghinfo.dzupload.entity
+
+
+
+
