@@ -87,7 +87,7 @@
   <!--获取所有未上传印章  and a.SealId ='3714026000011'-->
   <!--德州获取所有未上传印章语句   select  a.SealId,a.SealName,a.SealShape,a.SealSize,a.SealTypeId,a.SealImageData ,a.SealSampleName, b.OtherFileId,b.UnitName,b.LegalRY,b.LegalRYID from SealInfo a left join SealUnit b on a.SealUnitId =b.SealUnitId  where a.SealStatusId ='4' and (isnull(a.SyncProvince,'')='')-->
   <select id="getJFSealInfo" resultType="com.ghinfo.dzupload.entity.SealInfoUnitEntity">
-    select  a.SealId,a.SealName,a.SealShape,a.SealSize,a.SealTypeId,a.SealImageData ,a.SealSampleName, b.OtherFileId,b.UnitName,b.LegalRY,b.LegalRYID from SealInfo a left join SealUnit b on a.SealUnitId =b.SealUnitId  where a.SealStatusId in ('4','3') and a.SealID not in ('3714816000000','3714816000001','3714816000002','3714816000016','3714816000019','3714816000029','3714816000059','3714816000060','3714816000069','371481600000096') and (isnull(a.SyncProvince,'')='')
+    select  a.SealId,a.SealName,a.SealShape,a.SealSize,a.SealTypeId,a.SealImageData ,a.SealSampleName, b.OtherFileId,b.UnitName,b.LegalRY,b.LegalRYID from SealInfo a left join SealUnit b on a.SealUnitId =b.SealUnitId  where a.SealStatusId in ('4','3')  and (isnull(a.SyncProvince,'')='')
 
   </select>
 
