@@ -577,6 +577,10 @@ public class SealUploadProvinceJob {
 //                LOG.info("社会信用代码为空,印章编号:"+sealInfoUnit.getSealid());
 //                continue;
 //            }
+              if(sealInfoUnit.getSealmemo2() ==null||StringUtils.isBlank(sealInfoUnit.getSealmemo2())||StringUtils.isEmpty(sealInfoUnit.getSealmemo2())){
+                LOG.info("社会信用代码为空,印章编号:"+sealInfoUnit.getSealid());
+                continue;
+              }
 
             if(sealInfoUnit.getSealimagedata() ==null||StringUtils.isBlank(sealInfoUnit.getSealimagedata().toString())||StringUtils.isEmpty(sealInfoUnit.getSealimagedata().toString())){
                 LOG.info("印章图像信息为空,印章编号:"+sealInfoUnit.getSealid());
@@ -626,7 +630,10 @@ public class SealUploadProvinceJob {
             sendObject.put("VerifyPsd","jianguan_gh!@#$");
 
             corporationInfo.put("name", sealInfoUnit.getUnitname());
-            corporationInfo.put("taxNo", sealInfoUnit.getOtherfileid());
+
+//            corporationInfo.put("taxNo", sealInfoUnit.getOtherfileid());
+            //税号统一改为备注2
+            corporationInfo.put("taxNo", sealInfoUnit.getSealmemo2());
             corporationInfo.put("bossName", sealInfoUnit.getLegalry());
             corporationInfo.put("bossIdcard", sealInfoUnit.getLegalryid());
 
@@ -660,10 +667,13 @@ public class SealUploadProvinceJob {
 
 
             signetInfo.put("shell", sealShape.get(sealInfoUnit.getSealshape()));
-            signetInfo.put("applicantName", sealMKList.get(0).getMklegalry());
-            signetInfo.put("applicantLinkway", sealMKList.get(0).getMkunittel());
-            signetInfo.put("applicantIdcard", sealMKList.get(0).getMklegalryid());
-
+//            signetInfo.put("applicantName", sealMKList.get(0).getMklegalry());
+//            signetInfo.put("applicantLinkway", sealMKList.get(0).getMkunittel());
+//            signetInfo.put("applicantIdcard", sealMKList.get(0).getMklegalryid());
+            //经办人信息填法人信息
+            signetInfo.put("applicantName", sealInfoUnit.getLegalry());
+            signetInfo.put("applicantLinkway", sealInfoUnit.getUnittel());
+            signetInfo.put("applicantIdcard", sealInfoUnit.getLegalryid());
 
 
             signetInfo.put("markBase64Str", variant.toString());
@@ -1063,9 +1073,13 @@ public class SealUploadProvinceJob {
 //                LOG.info("该印章已经上传,印章编号:"+sealObj.get("SealId").toString());
 //                continue;
 //            }
-            if(sealInfoUnit.getOtherfileid() ==null||StringUtils.isBlank(sealInfoUnit.getOtherfileid())||StringUtils.isEmpty(sealInfoUnit.getOtherfileid())){
+//            if(sealInfoUnit.getOtherfileid() ==null||StringUtils.isBlank(sealInfoUnit.getOtherfileid())||StringUtils.isEmpty(sealInfoUnit.getOtherfileid())){
+//                LOG.info("社会信用代码为空,印章编号:"+sealInfoUnit.getSealid());
+//                return;
+//            }
+            if(sealInfoUnit.getSealmemo2() ==null||StringUtils.isBlank(sealInfoUnit.getSealmemo2())||StringUtils.isEmpty(sealInfoUnit.getSealmemo2())){
                 LOG.info("社会信用代码为空,印章编号:"+sealInfoUnit.getSealid());
-                return;
+                continue;
             }
 
             if(sealInfoUnit.getSealimagedata() ==null||StringUtils.isBlank(sealInfoUnit.getSealimagedata().toString())||StringUtils.isEmpty(sealInfoUnit.getSealimagedata().toString())){
@@ -1116,7 +1130,10 @@ public class SealUploadProvinceJob {
             sendObject.put("VerifyPsd","jianguan_gh!@#$");
 
             corporationInfo.put("name", sealInfoUnit.getUnitname());
-            corporationInfo.put("taxNo", sealInfoUnit.getOtherfileid());
+
+//            corporationInfo.put("taxNo", sealInfoUnit.getOtherfileid());
+            //税号统一改为备注2
+            corporationInfo.put("taxNo", sealInfoUnit.getSealmemo2());
             corporationInfo.put("bossName", sealInfoUnit.getLegalry());
             corporationInfo.put("bossIdcard", sealInfoUnit.getLegalryid());
 
@@ -1134,9 +1151,13 @@ public class SealUploadProvinceJob {
 
 
             signetInfo.put("shell", sealShape.get(sealInfoUnit.getSealshape()));
-            signetInfo.put("applicantName", sealMKList.get(0).getMklegalry());
-            signetInfo.put("applicantLinkway", sealMKList.get(0).getMkunittel());
-            signetInfo.put("applicantIdcard", sealMKList.get(0).getMklegalryid());
+//            signetInfo.put("applicantName", sealMKList.get(0).getMklegalry());
+//            signetInfo.put("applicantLinkway", sealMKList.get(0).getMkunittel());
+//            signetInfo.put("applicantIdcard", sealMKList.get(0).getMklegalryid());
+            //经办人信息填法人信息
+            signetInfo.put("applicantName", sealInfoUnit.getLegalry());
+            signetInfo.put("applicantLinkway", sealInfoUnit.getUnittel());
+            signetInfo.put("applicantIdcard", sealInfoUnit.getLegalryid());
 
 
 

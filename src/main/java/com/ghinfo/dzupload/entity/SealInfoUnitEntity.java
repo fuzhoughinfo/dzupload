@@ -24,6 +24,10 @@ public class SealInfoUnitEntity {
 
     private String legalryid;
 
+    private String unittel;
+    //税号 统一社会信用代码
+    private String sealmemo2;
+
     public String getSealid() {
         return sealid;
     }
@@ -110,5 +114,22 @@ public class SealInfoUnitEntity {
 
     public void setLegalryid(String legalryid) {
         this.legalryid = legalryid;
+    }
+
+
+    public String getUnittel() {
+        return unittel;
+    }
+
+    public void setUnittel(String unittel) {
+        this.unittel = unittel;
+    }
+
+    public String getSealmemo2() {
+        return sealmemo2;
+    }
+
+    public void setSealmemo2(String sealmemo2) {
+        this.sealmemo2 = sealmemo2;
     }
 }
