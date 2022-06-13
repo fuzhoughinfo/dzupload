@@ -120,10 +120,10 @@ public class SealUploadProvinceJob {
 //            } catch (Exception e) {
 //                LOG.error("印章数据回推给备案系统",e);
 //            }
-//
+
             LOG.info("开始上传印章备案材料");
 //            备案材料查询顺序 连表查询所有的印章，根据返回单位名称到file表中去查询相应的备案材料
-//
+
             List<?> jfDocSeallist= sealInfoEntityService.getSealFileRecord();
             LOG.info("上传之前未上传备案文件印章总数:"+jfDocSeallist.size());
             sendDocProvince(jfDocSeallist);
@@ -1262,6 +1262,9 @@ public class SealUploadProvinceJob {
                 }
                 if("30x40财务专用章".equals(typeName)){
                     return "4030财务专用章";
+                }
+                if("40合同专用章".equals(typeName)){
+                    return "40合同章";
                 }
 
                 if(typeName.equals(sealTypeName[0])){
