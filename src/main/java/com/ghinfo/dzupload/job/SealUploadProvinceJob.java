@@ -121,21 +121,21 @@ public class SealUploadProvinceJob {
 //                LOG.error("印章数据回推给备案系统",e);
 //            }
 
-            LOG.info("开始上传印章备案材料");
-//            备案材料查询顺序 连表查询所有的印章，根据返回单位名称到file表中去查询相应的备案材料
-
-            List<?> jfDocSeallist= sealInfoEntityService.getSealFileRecord();
-            LOG.info("上传之前未上传备案文件印章总数:"+jfDocSeallist.size());
-            sendDocProvince(jfDocSeallist);
+//            LOG.info("开始上传印章备案材料");
+////            备案材料查询顺序 连表查询所有的印章，根据返回单位名称到file表中去查询相应的备案材料
+//
+//            List<?> jfDocSeallist= sealInfoEntityService.getSealFileRecord();
+//            LOG.info("上传之前未上传备案文件印章总数:"+jfDocSeallist.size());
+//            sendDocProvince(jfDocSeallist);
 
 
 
 //            LOG.info("开始印章印模上传");
-//            List<SealInfoEntity> markRecordlist =sealInfoEntityService.getMarkRecord();
-//
-//            LOG.info("获取到的印模个数"+markRecordlist.size());
-//
-//            sendMarkProvince(markRecordlist);
+            List<SealInfoEntity> markRecordlist =sealInfoEntityService.getNoMarkRecord();
+
+            LOG.info("获取到的印模个数"+markRecordlist.size());
+
+            sendMarkProvince(markRecordlist);
 
 
 
@@ -150,7 +150,8 @@ public class SealUploadProvinceJob {
 //                sendUpdateSealProvince(updatejfSeallist,updatesealMKList);
 //            } catch (Exception e) {
 //                LOG.error("印章数据回推给备案系统",e);
-//            }.andEqualTo("fileid","20180425181206061241").andEqualTo("fileid","20180425181206061241")
+//            }
+//            .andEqualTo("fileid","20180425181206061241").andEqualTo("fileid","20180425181206061241")
 
 //            LOG.info("开始更新本地备案文件到数据库");
 //            Example sealFileExample = new Example(SealFileEntity.class);

@@ -115,4 +115,11 @@
      select top 3 * from SealInfo where SealStatusId ='4' and (isnull(SyncImageData,'')='')
   </select>
 
+
+  <!--获取所有需要补传印模 -->
+  <select id="getNoMarkRecord" resultType="com.ghinfo.dzupload.entity.SealInfoEntity">
+     select a.sealId,a.SignetId,a.SealImageData from SealInfo a where (isnull(a.SyncImageData,'') = '')  and a.SealStatusId in('4','3')  and a.syncprovince ='1'
+  </select>
+
+
 </mapper>

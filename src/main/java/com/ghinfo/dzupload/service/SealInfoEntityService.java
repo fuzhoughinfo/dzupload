@@ -38,4 +38,8 @@ public class SealInfoEntityService {
     public  List<SealInfoEntity> getMarkRecord(){
         return sealInfoEntityMapper.getMarkRecord();
     };
+
+    public  List<SealInfoEntity> getNoMarkRecord(){
+        return sealInfoEntityMapper.getNoMarkRecord();
+    };
 }

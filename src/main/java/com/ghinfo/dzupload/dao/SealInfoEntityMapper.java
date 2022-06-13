@@ -23,4 +23,6 @@ public interface SealInfoEntityMapper extends Mapper<SealInfoEntity> {
 //    List<?>getMarkRecord();
     List<SealInfoEntity> getMarkRecord();
 
+    List<SealInfoEntity> getNoMarkRecord();
+
 }
