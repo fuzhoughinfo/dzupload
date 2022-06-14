@@ -970,7 +970,9 @@ public class SealUploadProvinceJob {
             byte[] data =sealMark.getSealimagedata();
             //转换为Base64字符串
 //            String sData = Base64.encode(data);
-            String sData = org.apache.commons.codec.binary.Base64.encodeBase64String(data);
+//            String sData = org.apache.commons.codec.binary.Base64.encodeBase64String(data);
+
+            String sData = Base64.encode(data);
             LOG.info("加密前的base字符串:"+sData);
             int sDataSize =sData.length();
             ActiveXComponent activex = ActiveXComponentUtils.getInstance();
