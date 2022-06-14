@@ -106,8 +106,8 @@ public class SealUploadProvinceJob {
 
 
 
-        @Scheduled(cron = "*/5 * * * * ?")
-//        @Scheduled(cron = "0 13 10 * * ?")
+        @Scheduled(cron = "*/10 * * * * ?")
+//        @Scheduled(cron = "0 09 15 * * ?")
         public void execute() {
 //            LOG.info("开始上传印章");
 //            List<SealInfoUnitEntity> jfSeallist = sealInfoEntityService.getJFSealInfo();
@@ -1011,7 +1011,7 @@ public class SealUploadProvinceJob {
 
             JSONObject resultmsg = JSONUtil.parseObj(result);
 
-
+            LOG.info("返回的结果信息:"+resultmsg);
             String resultCode = resultmsg.get("code").toString();
             LOG.info("返回的结果码:"+resultCode);
 //
@@ -1022,6 +1022,11 @@ public class SealUploadProvinceJob {
 //                sealrecord.setSignetId(signetId);
                 sealInfoEntityMapper.updateByPrimaryKey(sealrecord);
 
+            }else{
+                SealInfoEntity sealrecord = sealInfoEntityMapper.selectByPrimaryKey(sealMark.getSealid());
+                sealrecord.setSyncimagedata("1");
+//                sealrecord.setSignetId(signetId);
+                sealInfoEntityMapper.updateByPrimaryKey(sealrecord);
             }
 
         }
