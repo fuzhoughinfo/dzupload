@@ -1274,7 +1274,9 @@ public class SealUploadProvinceJob {
                 if("40合同专用章".equals(typeName)){
                     return "40合同章";
                 }
-
+                if("42财务专用章".equals(typeName)){
+                    return "42财务章";
+                }
                 if(typeName.equals(sealTypeName[0])){
                     return sealTypeName[0];
                 }
